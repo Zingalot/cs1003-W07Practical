@@ -6,7 +6,10 @@ import java.util.List;
 public class W07Practical {
 
     public static void main(String[] args) throws SQLException, IOException {
-
+        if (args.length < 1) {
+            System.out.println("Usage: java -cp sqlite-jdbc.jar:. W07Practical <db_file> <action> [input_file]");
+            System.exit(0);
+        }
         //Converting arguments to variables
         String filepath = args[0];
         int operation = 0;

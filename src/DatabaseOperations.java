@@ -56,14 +56,14 @@ public class DatabaseOperations {
 
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery( "SELECT * FROM passengers");
-        System.out.println("passengerID, survived, pClass, name, sex, age, sibSp, parch, ticket, fare, cabin, embarked");
+        System.out.println("passengerId, survived, pClass, name, sex, age, sibSp, parch, ticket, fare, cabin, embarked");
         while (resultSet.next()) {
             int passengerID = resultSet.getInt("passengerID" );
             int survived = resultSet.getInt("survived");
             int pClass = resultSet.getInt("pClass");
             String name = resultSet.getString("name");
             String sex = resultSet.getString("sex");
-            float age = resultSet.getFloat("age");
+            Float age = resultSet.getFloat("age");
             int sibSp = resultSet.getInt("sibSp");
             int parch = resultSet.getInt("parch");
             String ticket = resultSet.getString("ticket");
@@ -71,10 +71,16 @@ public class DatabaseOperations {
             String cabin = resultSet.getString("cabin");
             String embarked = resultSet.getString("embarked");
 
-            System.out.println(Integer.toString(passengerID) + ", " + Integer.toString(survived) + ", " +
+            if(age == 0.0){
+                age = null;
+            }
+
+            /*System.out.println(Integer.toString(passengerID) + ", " + Integer.toString(survived) + ", " +
                     Integer.toString(pClass) + ", " + name + ", " + sex + ", " + Float.toString(age) + ", " +
                     Integer.toString(sibSp) + ", " + Integer.toString(parch) + ", " + ticket + ", " +
-                    Float.toString(fare) + ", " + cabin + ", " + embarked);
+                    Float.toString(fare) + ", " + cabin + ", " + embarked);*/
+            System.out.println(passengerID + ", " + survived + ", " + pClass + ", " + name + ", " + sex + ", " +
+                    age + ", " + sibSp + ", " + parch + ", " + ticket + ", " + fare + ", " + cabin + ", " + embarked);
         }
         statement.close();
     }
